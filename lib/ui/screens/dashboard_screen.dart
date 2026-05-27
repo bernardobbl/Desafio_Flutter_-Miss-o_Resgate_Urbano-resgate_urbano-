@@ -179,7 +179,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                 AppDateUtils.formatDate(_agora),
                 style: TextStyle(
                     fontSize: 13,
-                    color: theme.colorScheme.onSurface.withOpacity(0.6)),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
               ),
               Text(
                 '${_agora.hour.toString().padLeft(2, '0')}:'
@@ -208,7 +208,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                   'chamados',
                   style: TextStyle(
                       fontSize: 12,
-                      color: theme.colorScheme.onSurface.withOpacity(0.6)),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
                 ),
               ],
             ),

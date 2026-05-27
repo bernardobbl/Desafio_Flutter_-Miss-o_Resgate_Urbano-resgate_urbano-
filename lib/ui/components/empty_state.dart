@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 class EmptyState extends StatelessWidget {
   final String mensagem;
-  final IconData icon;
-
-  const EmptyState({super.key, required this.mensagem, this.icon = Icons.inbox_outlined});
+  const EmptyState({super.key, required this.mensagem});
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +10,9 @@ class EmptyState extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 64, color: Colors.grey[400]),
+          Icon(Icons.inbox_outlined, size: 72, color: Colors.grey[400]),
           const SizedBox(height: 16),
-          Text(mensagem, style: TextStyle(color: Colors.grey[500], fontSize: 16)),
+          Text(mensagem, style: TextStyle(fontSize: 16, color: Colors.grey[500])),
         ],
       ),
     );

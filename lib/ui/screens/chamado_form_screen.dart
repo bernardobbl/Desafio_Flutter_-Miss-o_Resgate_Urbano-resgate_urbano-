@@ -141,7 +141,7 @@ class _ChamadoFormScreenState extends State<ChamadoFormScreen>
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Prioridade *', style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7))),
+                Text('Prioridade *', style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7))),
                 const SizedBox(height: 8),
                 SegmentedButton<Prioridade>(
                   segments: Prioridade.values.map((p) => ButtonSegment<Prioridade>(value: p, label: Text(p.label, style: const TextStyle(fontSize: 12)))).toList(),
