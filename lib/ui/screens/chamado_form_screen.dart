@@ -13,8 +13,11 @@ class ChamadoFormScreen extends StatefulWidget {
   State<ChamadoFormScreen> createState() => _ChamadoFormScreenState();
 }
 
-class _ChamadoFormScreenState extends State<ChamadoFormScreen> {
+class _ChamadoFormScreenState extends State<ChamadoFormScreen>
+    with SingleTickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
+  late AnimationController _animCtrl;
+  late Animation<double> _fadeAnim;
   late final TextEditingController _titulo;
   late final TextEditingController _descricao;
   late final TextEditingController _bairro;
@@ -31,6 +34,9 @@ class _ChamadoFormScreenState extends State<ChamadoFormScreen> {
   @override
   void initState() {
     super.initState();
+    _animCtrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 450));
+    _fadeAnim = CurvedAnimation(parent: _animCtrl, curve: Curves.easeOut);
+    _animCtrl.forward();
     final c = widget.chamado;
     _titulo = TextEditingController(text: c?.titulo ?? '');
     _descricao = TextEditingController(text: c?.descricao ?? '');
@@ -44,6 +50,7 @@ class _ChamadoFormScreenState extends State<ChamadoFormScreen> {
 
   @override
   void dispose() {
+    _animCtrl.dispose();
     _titulo.dispose();
     _descricao.dispose();
     _bairro.dispose();
@@ -97,7 +104,9 @@ class _ChamadoFormScreenState extends State<ChamadoFormScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text(_editando ? 'Editar Chamado' : 'Novo Chamado')),
-      body: Form(
+      body: FadeTransition(
+        opacity: _fadeAnim,
+        child: Form(
         key: _formKey,
         child: ListView(
           padding: const EdgeInsets.all(16),
@@ -208,6 +217,7 @@ class _ChamadoFormScreenState extends State<ChamadoFormScreen> {
           ],
         ),
       ),
+        ),
     );
   }
 }
