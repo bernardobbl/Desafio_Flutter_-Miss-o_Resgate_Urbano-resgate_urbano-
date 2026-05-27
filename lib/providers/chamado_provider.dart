@@ -179,11 +179,15 @@ class ChamadoProvider extends ChangeNotifier {
 
   void setFiltroStatus(Status? status) {
     _filtroStatus = status;
+    // Cards de status e críticos são mutuamente exclusivos.
+    if (status != null) _filtroCritico = false;
     notifyListeners();
   }
 
   void toggleFiltroCritico() {
     _filtroCritico = !_filtroCritico;
+    // Ao ativar críticos, limpa filtro de status.
+    if (_filtroCritico) _filtroStatus = null;
     notifyListeners();
   }
 
