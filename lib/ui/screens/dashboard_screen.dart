@@ -159,7 +159,7 @@ class _DashboardScreenState extends State<DashboardScreen>
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(builder: (_) => const ChamadoFormScreen()),
-        ).then((_) => provider.carregar()),
+        ),
         icon: const Icon(Icons.add),
         label: const Text('Novo Chamado'),
       ),
@@ -341,7 +341,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                   ),
                 ),
               ),
-            ).then((_) => p.carregar()),
+            ),
           ),
         );
       },

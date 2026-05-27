@@ -131,7 +131,10 @@ class ChamadoProvider extends ChangeNotifier {
   }
 
   Future<String?> editar(Chamado chamado) async {
-    if (chamado.status == Status.concluido) {
+    // Regra: chamados que ESTÃO concluídos no banco não podem ser editados.
+    // O check é contra o estado original, não o novo (senão impede a transição p/ concluído).
+    final original = _todos.firstWhere((c) => c.id == chamado.id);
+    if (original.status == Status.concluido) {
       return 'Chamados concluídos não podem ser editados.';
     }
     if (await _repo.tituloExiste(chamado.titulo, ignorarId: chamado.id)) {

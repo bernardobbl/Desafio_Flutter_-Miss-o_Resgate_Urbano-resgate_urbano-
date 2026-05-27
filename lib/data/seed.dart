@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import '../core/constants/enums.dart';
@@ -33,7 +34,9 @@ class SeedData {
     for (final c in chamados) {
       try {
         await repo.insert(c);
-      } catch (_) {}
+      } catch (e) {
+        debugPrint('Seed: erro ao inserir ${c.titulo}: $e');
+      }
     }
 
     await prefs.setBool(_key, true);
