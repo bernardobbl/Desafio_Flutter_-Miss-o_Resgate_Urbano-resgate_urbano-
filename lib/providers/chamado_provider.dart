@@ -12,6 +12,7 @@ class ChamadoProvider extends ChangeNotifier {
   String _busca = '';
   String? _filtroBairro;
   Status? _filtroStatus;
+  bool _filtroCritico = false;
 
   bool get carregando => _carregando;
   bool _carregando = false;
@@ -41,6 +42,10 @@ class ChamadoProvider extends ChangeNotifier {
       lista = lista.where((c) => c.status == _filtroStatus).toList();
     }
 
+    if (_filtroCritico) {
+      lista = lista.where((c) => c.prioridade == Prioridade.critica).toList();
+    }
+
     return lista;
   }
 
@@ -57,6 +62,7 @@ class ChamadoProvider extends ChangeNotifier {
   String get busca => _busca;
   String? get filtroBairro => _filtroBairro;
   Status? get filtroStatus => _filtroStatus;
+  bool get filtroCritico => _filtroCritico;
 
   // Dados para gráfico por categoria
   Map<Categoria, int> get porCategoria {
@@ -173,10 +179,16 @@ class ChamadoProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void toggleFiltroCritico() {
+    _filtroCritico = !_filtroCritico;
+    notifyListeners();
+  }
+
   void limparFiltros() {
     _busca = '';
     _filtroBairro = null;
     _filtroStatus = null;
+    _filtroCritico = false;
     notifyListeners();
   }
 }
