@@ -6,7 +6,7 @@ import 'models/chamado.dart';
 import 'repositories/chamado_repository.dart';
 
 class SeedData {
-  static const _key = 'seed_done_v1';
+  static const _key = 'seed_done_v2';
 
   static Future<void> inicializarSeNecessario() async {
     final prefs = await SharedPreferences.getInstance();
